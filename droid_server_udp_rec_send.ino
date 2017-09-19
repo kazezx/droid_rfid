@@ -6,10 +6,10 @@
 #include <WiFiUdp.h>
 
 //variables definitions
-const char* ssid = "Zuhayr" ;   //SSID of Network.
-const char* password = "Zuhayr007" ;   //Password of SSID.
+const char* ssid = "---" ;   //SSID of Network.
+const char* password = "---" ;   //Password of SSID.
 WiFiUDP DroidPort;
-unsigned int mcuport = 2807 ;  //Port of NodeMCU.
+unsigned int mcuport = --- ;  //Port of NodeMCU.
 char packetBuffer[255];
 
 //void setup method for nodemcu
@@ -40,7 +40,7 @@ void loop ()
 
 //Sender method for udp packet.
 void sender(){
-  DroidPort.beginPacket("192.168.100.2", 8383);  //create udp packet with destination (ip,port) from currently received packet.
+  DroidPort.beginPacket("---", ---);  //create udp packet with destination (ip,port) from currently received packet.
   DroidPort.write("X=300,Y=500");  //write string to udp receiver.
   DroidPort.endPacket();   //ends port packet sending.
   delay(50000);
