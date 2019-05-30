@@ -1,15 +1,12 @@
-//** NODEMCU UDP SERVER FOR DROID **
-// BY KAZE
-
 //libraries to be used
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 
 //variables definitions
-const char* ssid = "---" ;   //SSID of Network.
-const char* password = "---" ;   //Password of SSID.
+const char* ssid = "AndroidTest" ;   //SSID of Network.
+const char* password = "abcdefgh" ;   //Password of SSID.
 WiFiUDP DroidPort;
-unsigned int mcuport = --- ;  //Port of NodeMCU.
+unsigned int mcuport = 54785 ;  //Port of NodeMCU.
 char packetBuffer[255];
 
 //void setup method for nodemcu
@@ -40,10 +37,11 @@ void loop ()
 
 //Sender method for udp packet.
 void sender(){
-  DroidPort.beginPacket("---", ---);  //create udp packet with destination (ip,port) from currently received packet.
+  Serial.println("Sending Packet...");
+  DroidPort.beginPacket("192.168.43.189", 54784);  //create udp packet with destination (ip,port) from currently received packet.
   DroidPort.write("X=300,Y=500");  //write string to udp receiver.
   DroidPort.endPacket();   //ends port packet sending.
-  delay(50000);
+  delay(5000);
 }
 
 //Receiver method for udp packet.
@@ -51,12 +49,10 @@ void receiver(){
   int packetSize = DroidPort.parsePacket();  //reads packet size received.
   if (packetSize) {
     int len = DroidPort.read(packetBuffer, 255);  //reads packet as char[].
-    String myData = ""; //string holder
+    String myData = ""; //string holder 
     for (int i = 0; i < packetSize; i++) {
       myData += (char)packetBuffer[i];//read packets as a character looper.
     }
     Serial.println(myData);
   }
 }
-
-
